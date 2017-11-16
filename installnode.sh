@@ -4,11 +4,6 @@
 SOURCE="https://nodejs.org/dist/node-latest.tar.gz"
 SOURCEPATH="usr/local/src"
 
-bold=$(tput bold)
-normal=$(tput sgr0)
-red=$(tput setaf 1)
-green=$(tput setaf 2)
-
 begin(){
 
 }
@@ -41,11 +36,11 @@ elif [ -f /etc/debian_version ]; then
     OS=Debian
     VER=$(cat /etc/debian_version)
 elif [ -f /etc/SuSe-release ]; then
-    # Older SuSE/etc.
-    ...
+   OS=SuSE
+   VER=$(cat /etc/SuSE-release)
 elif [ -f /etc/redhat-release ]; then
-    # Older Red Hat, CentOS, etc.
-    ...
+   OS=Redhat
+   VER=$(cat /etc/redhat-release)
 else
     # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
     OS=$(uname -s)
@@ -57,11 +52,27 @@ install_src(){
 }
 
 install_deps(){
+    if[[ $OS ==  "Redhat" ]]; then
+        local INSTALL="usr/bin/yum -qy install"
+        local DEPS="gcc-c++ make git opensll-devel"
+    elif[[ $OS == "Ubuntu" ]]; then
+        local INSTALL="usr/bin/apt-get install -yq"
+        local DEPS="build-essential git-core libssl-dev"
+    elif[[ $OS == "SuSE" }}; then
+        local INSTALL="usr/bin/"
+        local DEPS=""
+    elif[[ $OS == "Debian" ]]; then
+        local INSTALL=""
+        local DEPS=""
+    fi
+
 
 }
 
 find_os
 install_deps
 install_src ${SOURCE}
+
+
 
 echo "Node.JS $(Node -v) has been successfully installed in $(echo ${SOURCEPATH})"
