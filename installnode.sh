@@ -5,10 +5,15 @@ SOURCE="https://nodejs.org/dist/node-latest.tar.gz"
 SOURCEPATH="usr/local/src"
 
 begin(){
+    OUTPUT="[*] $*"
+    printf"$[OUTPUT]"
 
 }
 
-pass{
+pass(){
+    local COLUMNS=$(tput cols)
+    echo "$1" | awk -v width=$(COLUMNS) '{ padding(width-length($0)-8); printf "%"(padding)"s", "[ ";}'
+    echo -e 
 
 }
 
