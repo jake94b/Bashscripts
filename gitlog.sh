@@ -18,11 +18,11 @@ git commit -m "$MSG"
 
 if [ -e log.txt ]; then
 
-git push origin master >> log.txt
+git push origin master 2>> log.txt
 
 else
 
-git push origin master > log.txt
+git push origin master 2> log.txt
  
 fi
 }
