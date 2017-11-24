@@ -14,16 +14,27 @@ echo "What message would you like for commit?"
 
 read MSG
 
-git commit -m "$MSG"
-
 if [ -e log.txt ]; then
+
+echo "----------`date`---------"
+
+git commit -m "$MSG" 2>> log.txt
 
 git push origin master 2>> log.txt
 
+echo "-------------------------"
+
 else
 
-git push origin master 2> log.txt
- 
+echo "----------`date`----------"
+
+git commit -m "$MSG" 2> log.txt
+
+git push origin master 2>> log.txt
+
+echo "-------------------------"
+
+
 fi
 }
 
