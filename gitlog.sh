@@ -22,17 +22,17 @@ git commit -m "$MSG" 2>> log.txt
 
 git push origin master 2>> log.txt
 
-echo "-------------------------"
+echo "----------------------------------------"
 
 else
 
 echo "----------`date`----------"
 
-git commit -m "$MSG" 2> log.txt
+git commit -m "$MSG" 2>> log.txt
 
 git push origin master 2>> log.txt
 
-echo "-------------------------"
+echo "---------------------------------------"
 
 
 fi
