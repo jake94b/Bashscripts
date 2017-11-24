@@ -16,25 +16,25 @@ read MSG
 
 if [ -e log.txt ]; then
 
-echo ----------`date`--------- 2>> log.txt
+echo ----------`date`--------- 2>>log.txt
 
-git commit -m "$MSG" 2>> log.txt
+git commit -m "$MSG" 2>>log.txt
 
-git push origin master 2>> log.txt
+git push origin master 2>>log.txt
 
 echo ----------------------------------------------- 2>>log.txt
 
 else
 
-echo Beginning of log file 2> log.txt
+echo Beginning of log file 2>log.txt
 
-echo ----------`date`---------- 2>> log.txt
+git commit -m "$MSG" 2>>log.txt
 
-git commit -m "$MSG" 2>> log.txt
+echo `date` 2>>log.txt
 
-git push origin master 2>> log.txt
+git push origin master 2>>log.txt
 
-echo ----------------------------------------------- 2>> log.txt
+echo ----------------------------------------------- 2>>log.txt
 
 
 fi
