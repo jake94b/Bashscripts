@@ -19,4 +19,12 @@ VGS=$@
     
 for VG in $VGS
     do
+        #Retrieve disk size in KB, stores in POSIX format
+        KB =$(df -kP | grep ${VG}- | awk '{sum+=$3} END{printf("%d\n",sum)}')
+        
+        #convert to MB, GB, maybe Tb I dunno
+        MB = $(echo $KB/1024 | bc -l | sed -e  "s/\(\.[0-9]\).*/\1/g")
+        GB = $(echo $MB/1024 | bc -l | sed -e  "s/\(\.[0-9]\).*/\1/g")
+        TB = $(echo $GB/1024 | bc -l | sed -e  "s/\(\.[0-9]\).*/\1/g")
+
 done
