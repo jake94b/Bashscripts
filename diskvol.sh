@@ -41,3 +41,6 @@ for VG in $VGS
 		echo "$VG ${KB}K" >> $TMPFILE
 	fi
 done
+
+cat $TMPFILE | column -t
+rm $TMPFILE 2>/dev/null
