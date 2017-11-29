@@ -26,5 +26,18 @@ for VG in $VGS
         MB = $(echo $KB/1024 | bc -l | sed -e  "s/\(\.[0-9]\).*/\1/g")
         GB = $(echo $MB/1024 | bc -l | sed -e  "s/\(\.[0-9]\).*/\1/g")
         TB = $(echo $GB/1024 | bc -l | sed -e  "s/\(\.[0-9]\).*/\1/g")
-
+	
+	#Display largest possible denomination
+	if [ "$TB" -gt 0 ]
+	then
+		echo "$VG ${TB}T" >> $TMPFILE
+	elif [ "$GB" -gt 0 ]
+	then
+		echo "$VG ${GB}G" >> $TMPFILE
+	elif [ "$MB" -gt 0 ]
+	then
+		echo "$VG ${MB}M" >> $TMPFILE
+	else 
+		echo "$VG ${KB}K" >> $TMPFILE
+	fi
 done
