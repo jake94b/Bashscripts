@@ -21,13 +21,13 @@ EOF
 
 df -k | awk -f $temp
 
-exit 0
-
+echo $gb
 TIME=`date +%b-%d-%y`
 FNAME=backup-$TIME.tar.gz
 echo Please specify the directory you would like to back up
 read $SRCNAME
-SRCSIZE="$(du -sh)"
+SRCSIZE="$(du -sh $SRCNAME | cut -f 1)"
+if 
 echo Please specify where you would like to direct backup to
 read $DESTNAME
 tar -cvpzf $DESTNAME/$FNAME $SRCNAME
