@@ -11,7 +11,7 @@ TIME=`date +%b-%d-%y`
 FNAME=backup-$TIME.tar.gz
 echo Please specify the directory you would like to back up
 read $SRCNAME
-$FREESPCE="$(df -h | tail -1 | awk '{print $4)')"
+$FREESPCE="$(df -h | tail -1 | awk '{print $4}')"
 echo $FREESPACE
 SRCSIZE="$(du -sh $SRCNAME | cut -f 1)"
 echo $SRCSIZE
