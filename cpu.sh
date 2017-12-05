@@ -21,8 +21,9 @@ while true; do
 
 #Calculate CPU Usage from last time
 	let "DIFFIDLE=$IDLE-$PREV_IDLE"
-	let "DIFTOT=$TOTAL-$PREV_TOTAL"
-
+  	let "DIFFTOTAL=$TOTAL-$PREV_TOTAL"
+  	let "DIFFUSAGE=(1000*($DIFF_TOTAL-$DIFF_IDLE)/$DIFF_TOTAL+5)/10"
+ echo -en "\rCPU: $DIFFUSAGE%  \b\b"
 
 #Store CPU Usage for next cycle
 PREV_IDLE="$IDLE"
