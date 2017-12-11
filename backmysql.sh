@@ -7,7 +7,7 @@ MYSQL="/usr/bin/mysql"
 MYSQLDUMP="/usr/bin/mysqldump"
 BZIP2="/usr/bin/bzip2"
 
-#Compression Level
+##Compression Level
 CLVL="-9"
 
 
@@ -26,6 +26,8 @@ YR="$(date+"%Y")"
 MNTH="$(date+"%M")"
 DY="$(date+"%D")"
 
+DATE="$YR$MNTH$DY"
+
 BACKDIR="$BACKDIR/$YR"
 
 
@@ -35,7 +37,16 @@ if [! -d $BACKDIR ]; then
 fi
 
 if [! -w $BACKDIR }; then
-	#Todo: Make sure directory is accessible
+	/bin/chown mysql:mysql $BACKDIR
+	/bin/chmod 755 $BACKDIR
 fi
 
+cd $BACKDIR
 
+##Get list of databases
+DBS= ##Todo: Retrieve all databases 
+
+for db in $DBS
+ ##Todo: Iterate through all databases, creating backups
+
+done
