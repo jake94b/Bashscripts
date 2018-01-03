@@ -6,10 +6,13 @@
 MYSQL="/usr/bin/mysql"
 MYSQLDUMP="/usr/bin/mysqldump"
 BZIP2="/usr/bin/bzip2"
+NICE="/bin/nice"
 
 ##Compression Level
 CLVL="-9"
 
+
+NLVL=10
 
 BACKDIR="/home/backup/mysql"
 
@@ -41,10 +44,25 @@ if [! -w $BACKDIR }; then
 	/bin/chmod 755 $BACKDIR
 fi
 
+BACKDIR="$BACKDIR/$MNTH"
+
+if [! -d $BACKDIR ]; then
+	/bin/mkdir $BACKDIR
+fi
+
+if [! -w $BACKDIR }; then
+	/bin/chown mysql:mysql $BACKDIR
+	/bin/chmod 755 $BACKDIR
+fi
+
 cd $BACKDIR
 
+#Construct the date variable
+DATE="$YR$MNTH$DY"
+
+
 ##Get list of databases
-DBS= ##Todo: Retrieve all databases 
+DBS= "$($MYSQL -h $DB_SRVR --user=$USR --password=$PASSWD --silent --batch --execute='show databases')" 
 
 for db in $DBS
  ##Todo: Iterate through all databases, creating backups
