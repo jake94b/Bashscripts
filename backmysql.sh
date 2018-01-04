@@ -6,13 +6,11 @@
 MYSQL="/usr/bin/mysql"
 MYSQLDUMP="/usr/bin/mysqldump"
 BZIP2="/usr/bin/bzip2"
-NICE="/bin/nice"
+
 
 ##Compression Level
 CLVL="-9"
 
-
-NLVL=10
 
 BACKDIR="/home/backup/mysql"
 
@@ -65,6 +63,12 @@ DATE="$YR$MNTH$DY"
 DBS= "$($MYSQL -h $DB_SRVR --user=$USR --password=$PASSWD --silent --batch --execute='show databases')" 
 
 for db in $DBS
- ##Todo: Iterate through all databases, creating backups
+	 FILE="$db.$DB_SRVR_NAME.$DATE.sql"
+	 
+	 $MYSQLDUMP --opt -h $DB_SRVR --user=$USER --password=$PASSWD $db > $FILE
+
+	 
+	 $BZIP2
+
 
 done
