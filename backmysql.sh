@@ -14,7 +14,7 @@ CLVL="-9"
 BE_NICE=1
 
 
-
+NLVL=10
 
 BACKDIR="/home/backup/mysql"
 
@@ -72,7 +72,7 @@ for db in $DBS
 	 $MYSQLDUMP --opt -h $DB_SRVR --user=$USER --password=$PASSWD $db > $FILE
 	
 	 if [ $BE_NICE -eq 1 ]; then
-	    $NICE $BZIP2 $CLVL $FILE
+	    $NICE -$NLVL $BZIP2 $CLVL $FILE
 	 else
 	    $BZIP2 $CLVL $FILE
 	 fi
