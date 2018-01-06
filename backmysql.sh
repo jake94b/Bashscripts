@@ -11,6 +11,10 @@ BZIP2="/usr/bin/bzip2"
 ##Compression Level
 CLVL="-9"
 
+BE_NICE=1
+
+
+
 
 BACKDIR="/home/backup/mysql"
 
@@ -66,9 +70,13 @@ for db in $DBS
 	 FILE="$db.$DB_SRVR_NAME.$DATE.sql"
 	 
 	 $MYSQLDUMP --opt -h $DB_SRVR --user=$USER --password=$PASSWD $db > $FILE
-
-	 
-	 $BZIP2
+	
+	 if [ $BE_NICE -eq 1 ]; then
+	    $NICE $BZIP2 $CLVL $FILE
+	 else
+	    $BZIP2 $CLVL $FILE
+	 fi
+done
 
 
 done
